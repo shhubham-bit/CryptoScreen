@@ -10,7 +10,7 @@ const CurencyContext = createContext()
 
 function HomeScreen(){
 
-    console.log("home")
+    console.log("Home Screen called ........")
     const [theme] = useContext(ThemeContext)
     const [selectedCurrency, setCurrency] = useState(123)
 

@@ -7,8 +7,7 @@ import { PriceText } from "../customComponent/PriceText"
 
 function CurrencyCard({currency, index ,itemCallback}){
 
-    console.log(index)
-
+    console.log("card item render", index)
     const [theme] = useContext(ThemeContext)
 
     return(

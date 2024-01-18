@@ -1,9 +1,6 @@
 import { useEffect, useState } from "react"
 import { useColorScheme } from "react-native"
 import { theme, LightColorScheme, DarkColorScheme } from "../style/Theme"
-import { Colors } from "react-native/Libraries/NewAppScreen"
-import { useTheme } from "@react-navigation/native"
-
 
 
  const useAppTheme = () =>{
@@ -14,6 +11,7 @@ import { useTheme } from "@react-navigation/native"
     console.log("app theme", colorScheme)
 
     const [appTheme, setTheme] = useState(theme)
+    
     useEffect(() => {
         if(colorScheme === 'light'){
             console.log("ligh if")
@@ -38,10 +36,8 @@ import { useTheme } from "@react-navigation/native"
 
 const useDebounce = (time, callback, depAr) => {
 
-    console.log('debouc', depAr)
     useEffect(() => {
         timeout = setTimeout(() => {
-            console.log('ddiiiii')
             callback()
         }, time)
 

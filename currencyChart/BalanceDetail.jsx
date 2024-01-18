@@ -10,6 +10,8 @@ function BalanceDetail(){
     const [theme] = useContext(ThemeContext)
     const [price,_] = useContext(CurencyContext)
 
+    console.log('Balance price update')
+
     return(
         <View style = {style(theme).viewStyle}>
             <Text >Currenct Balance</Text>

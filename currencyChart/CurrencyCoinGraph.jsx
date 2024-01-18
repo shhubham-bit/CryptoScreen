@@ -7,7 +7,7 @@ import { ThemeContext } from "../route/Route";
 function CurrencyGraph({dataList}){
 
     const [theme] = useContext(ThemeContext)
-    console.log("bar data", dataList)
+    console.log("Crypto Graph Called.........")
 
     const ShowBar = ({height, color})=> {
         return(
@@ -15,7 +15,7 @@ function CurrencyGraph({dataList}){
             style = {barStyle(height, color).bar}>
         </View>
         )
-        
+
     }
 
     return(
@@ -28,11 +28,12 @@ function CurrencyGraph({dataList}){
                 showsVerticalScrollIndicator = {false}
                 alwaysBounceHorizontal = {false}
                 alwaysBounceVertical = {false}
+                
                 >
             {
                 dataList.map((item) => {
                      return <ShowBar 
-                        height={25*item.value}
+                        height={18*item.value}
                         color={item.color}
                     />
                 })

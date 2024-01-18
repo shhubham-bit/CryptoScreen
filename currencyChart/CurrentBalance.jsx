@@ -10,8 +10,10 @@ import { ThemeContext } from "../route/Route";
 
 function CurrenetBalance(){
 
+    console.log("Balance(price + graph) section  called")
     const [theme] = useContext(ThemeContext)
     const [graphData, setGraphData] = useState([])
+    
     useEffect(() => {
         setGraphData(getBarData)
     }, [])

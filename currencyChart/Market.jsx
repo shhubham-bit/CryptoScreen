@@ -1,6 +1,6 @@
 import { Text, View } from "react-native"
 import { SearchView } from "../customComponent/SearchView"
-import { useCallback, useContext, useEffect, useState, useTransition } from "react"
+import { memo, useCallback, useContext, useEffect, useState, useTransition } from "react"
 import { CurencyContext } from "./HomeScreen"
 import CurrencyList from "./CurrencyListing"
 import getMockCurrencyData from "./mockData"
@@ -11,26 +11,23 @@ import Divider from "../customComponent/Divider"
 function MarketTab(){
 
     const [currencyList, setCurrencyList] = useState()
-    const [emptyList, setEmptyList] = useState(false)
     const [search, setSearch] = useState("")
-
     const [_, setCurrency] =  useContext(CurencyContext)
 
-    console.log('market')
-    useEffect(() => {
-        console.log('effect1')
-        setCurrencyList(getMockCurrencyData())
-    }, [emptyList])
+    console.log('Market Tab')
 
-    useDebounce(700, () => {
-        console.log('effect2')
+    useEffect(() => {
+        console.log('fetch mock data')
+        setCurrencyList(getMockCurrencyData())
+    }, [])
+
+    useDebounce(5000, () => {
+        console.log('serach debounce callback called')
         filterData(search)
-    }, 
-    [search])
+    }, [search])
 
     const onSearchCallback = useCallback((value) => {
         setSearch(value) 
-        console.log("end 2")
     }, [])
 
     const filterData = (value)=> {
@@ -49,19 +46,13 @@ function MarketTab(){
     }
 
     const currencyItemClick = useCallback((index) => {
-        console.log("market index", index,)
+        console.log("market index",index,  currencyList.length)
         setCurrency(currencyList[index].price)
-    }, [])
+    }, [currencyList])
 
-    
 
-    
-
-    return(
-        <View style = {{backgroundColor: 'white'}}>
-            <SearchView 
-                searchQuery = {search} 
-                callback = {onSearchCallback}/>
+    const TitleSection = () => {
+        return(
             <View style = {{flex: 0, 
                 flexDirection: 'row',
                 justifyContent: 'space-between', 
@@ -75,7 +66,16 @@ function MarketTab(){
                 <Text>Change</Text>
                 <Text>Market Cap</Text>
             </View>
-            <Divider />
+        )
+    }
+    
+    return(
+        <View style = {{backgroundColor: 'white'}}>
+            <SearchView 
+                searchQuery = {search} 
+                callback = {onSearchCallback}/>
+            <TitleSection/>
+            <Divider/>
             <CurrencyList 
                 currencies = {currencyList} 
                 cardCallback = {currencyItemClick}/>
@@ -84,4 +84,4 @@ function MarketTab(){
     
 }
 
-export default (MarketTab)
+export default memo(MarketTab)

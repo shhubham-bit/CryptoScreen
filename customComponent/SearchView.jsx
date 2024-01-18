@@ -1,11 +1,11 @@
 import { StyleSheet, TextInput, View } from "react-native"
 import { useDebounce } from "../utils/CustomHooks"
-import { useContext, useState } from "react"
+import { useContext, useState, memo } from "react"
 import { ThemeContext } from "../route/Route"
 
-const SearchView = ({ callback}) => {
+const SearchView = memo(({ serachQuery, callback}) => {
 
-    console.log("sea")
+    console.log("Search View rerender")
 
     const [theme] = useContext(ThemeContext)
     
@@ -19,12 +19,13 @@ const SearchView = ({ callback}) => {
             <TextInput 
                 style = {style(theme).searchStyle}
                 placeholder="Serach crypto currency"
+                value={serachQuery}
                 onChangeText={(value) => onTextChangeCallback(value)}
              >
             </TextInput>
         </View>
     )
-}
+});
 
 const style = (appTheme) => StyleSheet.create({
     searchStyle: {

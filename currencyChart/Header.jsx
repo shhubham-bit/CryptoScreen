@@ -5,7 +5,7 @@ import { memo } from "react";
 
 function Header(){
 
-    console.log("header")
+    console.log("Header called")
     return(
         <View style = {style.container}>
             <ImageButton 
